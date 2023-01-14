@@ -1403,6 +1403,8 @@ self: super: with self; {
 
   brelpy = callPackage ../development/python-modules/brelpy { };
 
+  bridgestan = callPackage ../development/python-modules/bridgestan { inherit (pkgs) bridgestan; };
+  
   broadlink = callPackage ../development/python-modules/broadlink { };
 
   brother = callPackage ../development/python-modules/brother { };

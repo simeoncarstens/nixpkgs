@@ -16,12 +16,16 @@ stdenv.mkDerivation {
       fetchSubmodules = true;
     };
     patchPhase = ''
-      substituteInPlace Makefile --replace 'STANC ?= $(BS_ROOT)/bin/stanc$(EXE)' 'STANC ?= ${stanc}/bin/stanc'   
+      substituteInPlace Makefile --replace 'STANC ?= $(BS_ROOT)/bin/stanc$(EXE)' 'STANC ?= ${stanc}/bin/stanc'
       head -n -10 Makefile > Makefile.tmp && mv Makefile.tmp Makefile
+      patchShebangsAuto
+    '';
+    buildPhase = ''
+      make test_models/simple/simple_model.so
     '';
     installPhase = ''
       mkdir -p $out/bin
-      cp -r $src/* $out/
+      cp -r * $out/
       # cat <<EOT >> $out/bin/bridgestan_make
       # #!/usr/bin/env bash
       # cd $out
@@ -29,4 +33,5 @@ stdenv.mkDerivation {
       # EOT
       # chmod +x $out/bin/bridgestan_make
     '';
+    buildInputs = [ ];
 }
