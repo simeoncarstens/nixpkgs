@@ -36826,6 +36826,8 @@ with pkgs;
 
   brgenml1cupswrapper = callPackage ../misc/cups/drivers/brgenml1cupswrapper {};
 
+  bridgestan = callPackage ../misc/bridgestan {};
+  
   brightnessctl = callPackage ../misc/brightnessctl { };
 
   cached-nix-shell = callPackage ../tools/nix/cached-nix-shell {};
